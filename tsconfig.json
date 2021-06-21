@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
     "jsx": "react",
+    "baseUrl": "./",
+    // 要先设置baseUrl，基于baseUrl设置别名的根路径
+    "paths": {
+      "/@/*": ["src/*"],
+      "/@component/*": ["src/components/*"]
+    },
     "types": ["vite/client"]
   }
 }
