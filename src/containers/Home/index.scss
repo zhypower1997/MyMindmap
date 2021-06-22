@@ -1,0 +1,18 @@
+.home {
+	&-header {
+		background: #ddd;
+		height: 60px;
+		display: flex;
+		align-items: center;
+
+		&-item {
+			margin-left: 10px;
+		}
+	}
+
+	&-content {
+		&-left {}
+
+		&-right {}
+	}
+}

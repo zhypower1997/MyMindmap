@@ -1,13 +1,14 @@
 import React from "react";
 import PullDownMenu from "/@component/PullDownMenu";
 import Avatar from "/@component/Avatar";
+import Home from "/@/containers/Home";
 
 import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <PullDownMenu
+      {/* <PullDownMenu
         title="肥宅的选择"
         width="200px"
         content={[
@@ -29,7 +30,8 @@ function App() {
           console.log(a, b);
         }}
       />
-      <Avatar />
+      <Avatar /> */}
+      <Home />
     </div>
   );
 }
