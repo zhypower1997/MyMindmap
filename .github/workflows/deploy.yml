@@ -21,37 +21,37 @@ jobs:
 
     runs-on: ubuntu-latest # 使用ubuntu系统镜像运行自动化脚本(温馨提示：和你所使用的操作系统及服务器系统无关，我本地用的windows10,云服务器用的centos)
 
-  strategy:
+    strategy:
 
-    matrix:
+      matrix:
 
-      node-version: [12.x] # 配置所需node版本
+        node-version: [12.x] # 配置所需node版本
 
-  steps: # 自动化步骤
+    steps: # 自动化步骤
 
-    - name: Checkout
-    
-      uses: actions/checkout@v2 # 第一步，检出仓库副本
+      - name: Checkout
 
-    - name: Use Node.js ${{ matrix.node-version }} #规定node.js版本(可不配置)
+        uses: actions/checkout@v2 # 第一步，检出仓库副本
 
-      uses: actions/setup-node@v1
+      - name: Use Node.js ${{ matrix.node-version }} #规定node.js版本(可不配置)
 
-      with:
+        uses: actions/setup-node@v1
 
-        node-version: ${{ matrix.node-version }}
+        with:
 
-    - name: Install dependencies # 第二步，安装依赖
+          node-version: ${{ matrix.node-version }}
 
-      run: npm install
+      - name: Install dependencies # 第二步，安装依赖
 
-    - name: Build # 第三步，打包代码
+        run: npm install
 
-      run: npm run build --if-present
+      - name: Build # 第三步，打包代码
 
-    - name: Deploy to Server # 第四步，rsync推送文件
+        run: npm run build --if-present
 
-      uses: AEnterprise/rsync-deploy@v1.0 # 使用别人包装好的步骤镜像
+      - name: Deploy to Server # 第四步，rsync推送文件
+
+        uses: AEnterprise/rsync-deploy@v1.0 # 使用别人包装好的步骤镜像
 
 env:
 
