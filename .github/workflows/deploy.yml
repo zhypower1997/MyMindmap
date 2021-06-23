@@ -35,9 +35,10 @@ steps: # 自动化步骤
 
 uses: actions/setup-node@v1
 
-with:
+# with:
 
-node-version: ${{ matrix.node-version }}
+# node-version: ${{ matrix.node-version }}
+
 - name: Install dependencies # 第二步，安装依赖
 
 run: npm install
