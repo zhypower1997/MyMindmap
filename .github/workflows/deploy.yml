@@ -1,32 +1,31 @@
-# workflow名称。省略的话，默认为当前workflow文件名
-name: Node.js CI
-# 触发workflow的条件，
-on:
-push:
-# 只有master分支发生push事件时，才会触发workflow
-branches: [ master ]
+name: Docker Image CI # Actions名称
+
+on: [push] # 执行时机
 
 jobs:
-# 任务的job_id，具体名称自定义，这里build代表打包
-build:
 
-# runs-on字段指定运行所需要的虚拟机环境。注意：这个是必填字段
-runs-on: ubuntu-latest
-# 用于配置当前workflow的参数
-strategy:
-matrix:
-node-version: [14.x]
-# See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-# steps字段指定每个job的运行步骤，可以包含一个或多个步骤，每个步骤都可以配置指定字段
-steps:
-# 切代码到 runner
-- uses: actions/checkout@v2
-# 在当前操作系统安装node
-- name: Use Node.js ${{ matrix.node-version }}
-uses: actions/setup-node@v1
-with:
-node-version: ${{ matrix.node-version }}
-# 该运行的命令或者action
-# 安装依赖、运行测试、打包
-    - run: npm install
-    - run: npm run build
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: install
+        run: yarn
+
+      - name: build project
+        run: yarn run build
+        
+      - name: Build the Docker image # 步骤名字
+        run: |
+          docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-hangzhou.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
+          docker build -t bilibili-vue:latest . 
+          docker tag bilibili-vue registry.cn-hangzhou.aliyuncs.com/zlyyyy/bilibili-vue:latest
+          docker push registry.cn-hangzhou.aliyuncs.com/zlyyyy/bilibili-vue:latest # 推送
+      - name: ssh docker login
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: cd ~ && sh bilibili-vue-deploy.sh ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}
