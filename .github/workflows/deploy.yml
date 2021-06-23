@@ -29,7 +29,9 @@ jobs:
 
   steps: # 自动化步骤
 
-    - uses: actions/checkout@v2 # 第一步，检出仓库副本
+    - name: Checkout
+    
+      uses: actions/checkout@v2 # 第一步，检出仓库副本
 
     - name: Use Node.js ${{ matrix.node-version }} #规定node.js版本(可不配置)
 
