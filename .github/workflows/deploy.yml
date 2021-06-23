@@ -21,6 +21,6 @@ jobs:
         with:  
           username: 'root'   #ssh user name
           server: '${{ secrets.SSH_HOST }}' 
-          ssh_private_key: '${{ secrets.SSH_PUB_KEY }} '
+          ssh_private_key: '${{ secrets.DEPLOY_KEY }} '
           local_path: './dist/*'  # 对应我们项目build的文件夹路径
           remote_path: ' /www/wwwroot/myCloud/'
