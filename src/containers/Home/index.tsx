@@ -21,7 +21,11 @@ function Home() {
         </div>
       </div>
       <div className="home-content">
-        <div className="home-content-left"></div>
+        <div className="home-content-left">
+          <div className="home-content-left-create-btn">
+            <div className="home-content-left-create-btn-item">Create Folder +</div>
+          </div>
+        </div>
         <div className="home-content-right"></div>
       </div>
     </div>

@@ -11,8 +11,43 @@
 	}
 
 	&-content {
-		&-left {}
+		display: flex;
+		height: calc(100vh - 60px);
 
-		&-right {}
+		&-left {
+			position: relative;
+			width: 200px;
+			background: rgb(175, 175, 175);
+			overflow-y: scroll;
+			&::-webkit-scrollbar { width: 0 !important }
+			&-create-btn {
+				position: absolute;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				bottom: 0;
+				width: 100%;
+				height: 150px;
+				&-item {
+					width: 80%;
+					padding: 10px;
+					border-radius: 10px;
+					text-align: center;
+					background: #fff;
+					border: 1px solid #ccc;
+				}
+				&-item:hover {
+
+					background: rgb(146, 146, 146);
+				}
+			}
+		}
+
+		&-right {
+			flex: 1;
+			background: #ccc;
+			overflow-y: scroll;
+			&::-webkit-scrollbar { width: 0 !important }
+		}
 	}
 }

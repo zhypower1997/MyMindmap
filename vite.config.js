@@ -8,6 +8,8 @@ const {
  */
 const config = {
   jsx: 'react',
+  port: 8080,
+  open: true,
   plugins: [reactPlugin],
   alias: {
     '/@/': resolve(__dirname, './src'),
