@@ -18,7 +18,7 @@ jobs:
 
       - name: Deploy to Server # 第四步，rsync推送文件
         uses: wlixcc/SFTP-Deploy-Action@v1.0  # 使用别人包装好的步骤镜像
-         with:  
+        with:  
           username: 'root'   #ssh user name
           server: '${{ secrets.SSH_HOST }}' #引用之前创建好的secret
           ssh_private_key: ${{ secrets.DEPLOY_KEY }} #引用之前创建好的secret
