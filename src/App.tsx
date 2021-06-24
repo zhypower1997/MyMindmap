@@ -4,34 +4,14 @@ import Avatar from "/@component/Avatar";
 import Home from "/@/containers/Home";
 
 import "./App.scss";
+import { isPC } from '../utils/index';
+import MobilePage from './containers/MobilePage/index';
 
 function App() {
+  console.log(isPC)
   return (
     <div className="App">
-      {/* <PullDownMenu
-        title="肥宅的选择"
-        width="200px"
-        content={[
-          { label: "吃dssdd饭", value: "sdsdd" },
-          { label: "睡觉", value: "sdsd水d" },
-        ]}
-        onSelect={(a, b) => {
-          console.log(a, b);
-        }}
-      />
-      <PullDownMenu
-        title="肥宅的选择"
-        width="200px"
-        content={[
-          { label: "吃饭", value: "sdsdd" },
-          { label: "睡s觉", value: "sdsd水d" },
-        ]}
-        onSelect={(a, b) => {
-          console.log(a, b);
-        }}
-      />
-      <Avatar /> */}
-      <Home />
+      {!isPC ? <MobilePage/> : <Home />}
     </div>
   );
 }
